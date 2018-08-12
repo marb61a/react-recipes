@@ -1,4 +1,4 @@
-const mongoose = require(mongoose);
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const RecipeSchema = new Schema({
@@ -23,7 +23,7 @@ const RecipeSchema = new Schema({
     default: Date.now
   },
   likes: {
-    type: number,
+    type: Number,
     default: 0
   },
   username: {

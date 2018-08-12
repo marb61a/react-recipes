@@ -33,7 +33,7 @@ app.use('/graphiql', graphiqlExpress({
 }));
 
 // Connect mongoose schemas to graphql
-app.use('graphql', graphqlExpress({
+app.use('graphql', bodyParser.json(), graphqlExpress({
   schema,
   context: {
     Recipe,
