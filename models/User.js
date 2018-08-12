@@ -1,34 +1,28 @@
 const mongoose = require(mongoose);
 const Schema = mongoose.Schema;
 
-const RecipeSchema = new Schema({
-  name: {
+const UserSchema = new Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
     type: String,
     required: true
   },
-  category: {
+  email: {
     type: String,
     required: true
   },
-  description: {
-    type: String,
-    required: true
-  },
-  instructions: {
-    type: String,
-    required: true
-  },
-  createdDate: {
+  joinDate: {
     type: Date,
     default: Date.now
   },
-  likes: {
-    type: number,
-    default: 0
-  },
-  username: {
-    type: String
+  favorites: {
+    type: [Schema.Types.ObjectID],
+    ref: 'Recipe'
   }
 });
 
-module.exports = mongoose.model('Recipe', RecipeSchema);
+module.exports = mongoose.model('User', UserSchema);
