@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config({
   path: 'variables.env'
 });
+const cors = require('cors');
 
 // Brings in the GraphQL - Express middleware
 const { graphiqlExpress, graphqlExpress} = require('apollo-server-express');
@@ -26,6 +27,12 @@ mongoose
   .catch(err => console.error(err));
 
 const app = express();
+
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true
+};
+app.use(cors(corsOptions));
 
 // Create graphiql application
 app.use('/graphiql', graphiqlExpress({
