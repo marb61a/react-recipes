@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Mutation } from 'react-apollo';
 
 import {SIGNUP_USER} from '../../queries';
@@ -11,7 +11,7 @@ const initialState = {
   passwordConfirmation: ""
 };
 
-class Signup extends React.Component {
+class Signup extends Component {
   state = {
     ...initialState
   };
