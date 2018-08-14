@@ -1,5 +1,4 @@
-import jwt from 'jsonwebtoken';
-import { create } from 'domain';
+const jwt = require('jsonwebtoken');
 
 const createToken = (user, secret, expiresIn) => {
   const { username, email } = user;
