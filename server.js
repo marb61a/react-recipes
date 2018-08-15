@@ -5,6 +5,7 @@ require('dotenv').config({
   path: 'variables.env'
 });
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
 // Brings in the GraphQL - Express middleware
 const { graphiqlExpress, graphqlExpress} = require('apollo-server-express');
@@ -33,6 +34,22 @@ const corsOptions = {
   credentials: true
 };
 app.use(cors(corsOptions));
+
+// Setup JWT middleware
+app.use(async (req, res, next) => {
+  const token = req.headers["authorization"];
+
+  if(token !== null){
+    try {
+      const currentUser = await jwt.verify(token, process.env.SECRET);
+
+    } catch(err){
+      console.error(err);
+    }
+  }
+
+  next();
+});
 
 // Create graphiql application
 app.use('/graphiql', graphiqlExpress({

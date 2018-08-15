@@ -25,6 +25,11 @@ const client = new ApolloClient({
         authorization: token
       }
     })
+  },
+  onError: ({networkError}) => {
+    if (networkError) {
+      console.log('Network Error', networkError);
+    }
   }
 });
 

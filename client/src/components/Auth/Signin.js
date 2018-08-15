@@ -53,8 +53,14 @@ class Signin extends Component {
 
   render() {
     return (
-      <div>
-        Signin
+      <div className="App">
+        <h2 className="App">Signin</h2>
+        <Mutation
+          mutation={SIGNIN_USER}
+          variables={{username, password}}
+        >
+        
+        </Mutation>
       </div>
     );
   }
