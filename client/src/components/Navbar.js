@@ -6,12 +6,14 @@ import Signout from './Auth/Signout';
 const Navbar = ({session}) => (
   <nav>
     {
-      session && session.getCurrentUser ? <NavbarAuth /> : <NavbarUnAuth />
+      session && session.getCurrentUser 
+      ? <NavbarAuth session={session} /> 
+      : <NavbarUnAuth />
     }
   </nav>
 );
 
-const NavbarAuth = () => (
+const NavbarAuth = ({session}) => (
   <ul>
     <li>
       <NavLink to="/" exact>Home</NavLink>

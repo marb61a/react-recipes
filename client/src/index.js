@@ -44,6 +44,7 @@ const Root = (refetch, session) => (
       <Navbar session={session}/>
       <Switch>
         <Route path="/" exact component={App}/>
+        <Route path="/search" component={Search} />
         <Route path="/signin" render={() => <Signin refetch={refetch}/>}/>
         <Route path="/signup" render={() => <Signup refetch={refetch}/>}/>
         <Route path="/recipe/add" component={AddRecipe}/>
@@ -54,9 +55,11 @@ const Root = (refetch, session) => (
   </Router>
 );
 
+const RootWithSession = withSession(Root);
+
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <Root />
-  </ApolloProvider>, 
-  document.getElementById('root')
+    <RootWithSession />
+  </ApolloProvider>,
+  document.getElementById("root")
 );
