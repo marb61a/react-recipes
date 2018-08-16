@@ -14,6 +14,7 @@ const withSession = Component => props => (
       return <Component 
         {...props}
         refetch={refetch}
+        session={data}
       />
     }}
   </Query>
