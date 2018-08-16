@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom'
-
 import {Mutation} from 'react-apollo';
 
-import {SIGNIN_USER} from '../../queries'
-import Error from '../Error'
+import {SIGNIN_USER} from '../../queries';
+import Error from '../Error';
 
 const initialState = {
   username: "",
   password: ""
-}
+};
 
 class Signin extends Component {
   state = {
@@ -34,14 +33,16 @@ class Signin extends Component {
     event.preventDefault();
 
     signinUser()
-      .then(data => {
-        console.log(data);
+      .then(async ({ data }) => {
+        // console.log(data);
 
-        localStorage.setItem('token', data.signinUser.token)
+        localStorage.setItem("token", data.signinUser.token);
+        await this.props.refetch();
 
         this.clearState();
-      })
-  }
+        this.props.history.push("/");
+      });
+  };
 
   validateForm = () => {
     const {username, password} = this.state;
@@ -49,7 +50,7 @@ class Signin extends Component {
     const isInvalid = !username || !password;
 
     return isInvalid;
-  }
+  };
 
   render() {
     const { username, password } = this.state;
@@ -61,11 +62,11 @@ class Signin extends Component {
           mutation={SIGNIN_USER}
           variables={{username, password}}
         >
-          {(signupUser, {data, loading, error}) => {
+          {(signinUser, {data, loading, error}) => {
             return (
               <form 
                 className="form" 
-                onSubmit={event => this.handleSubmit(event, signupUser)}
+                onSubmit={event => this.handleSubmit(event, signinUser)}
               >
                 <input 
                   type="text"
@@ -90,7 +91,7 @@ class Signin extends Component {
                 </button>
                 {error && <Error error={error}/>}
               </form>
-            )
+            );
           }}
         </Mutation>
       </div>

@@ -65,7 +65,7 @@ exports.resolvers = {
       }
 
       return {
-        token: createToken(newUser, process.env.SECRET, '1hr')
+        token: createToken(user, process.env.SECRET, '1hr')
       };
     },
 
