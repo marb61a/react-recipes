@@ -52,6 +52,8 @@ class Signin extends Component {
   }
 
   render() {
+    const { username, password } = this.state;
+
     return (
       <div className="App">
         <h2 className="App">Signin</h2>

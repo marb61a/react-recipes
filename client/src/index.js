@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router, Route, Switch, Redirect
@@ -17,7 +17,7 @@ import Signup from './components/Auth/Signup';
 const client = new ApolloClient({
   uri: 'http://localhost:4444/graphql',
   fetchOptions: {
-    credentials: include
+    credentials: 'include'
   },
   request: operation => {
     const token = localStorage.getItem('token');
@@ -35,15 +35,17 @@ const client = new ApolloClient({
   }
 });
 
-const Root = () => (
+const Root = (refetch) => (
   <Router>
-    <Navbar />
-    <Switch>
-      <Route path="/" exact component={App}/>
-      <Route path="/signin" render={() => <Signin refetch={refetch}/>}/>
-      <Route path="/signup" render={() => <Signup refetch={refetch}/>}/>
-      <Redirect to="/"/>
-    </Switch>
+    <Fragment>
+      <Navbar />
+      <Switch>
+        <Route path="/" exact component={App}/>
+        <Route path="/signin" render={() => <Signin refetch={refetch}/>}/>
+        <Route path="/signup" render={() => <Signup refetch={refetch}/>}/>
+        <Redirect to="/"/>
+      </Switch>
+    </Fragment>
   </Router>
 );
 
