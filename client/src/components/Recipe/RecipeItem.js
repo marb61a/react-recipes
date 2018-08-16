@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const RecipeItem = ({_id, name, category}) => (
-  <li key={recipe._id}>
-    <h4>{recipe.name}</h4>
+  <li key={_id}>
+    <h4>{name}</h4>
     <p>
       <strong>
-        {recipe.category}
+        {category}
       </strong>
     </p>
   </li>
