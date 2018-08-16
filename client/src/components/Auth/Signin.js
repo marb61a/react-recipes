@@ -63,7 +63,10 @@ class Signin extends Component {
         >
           {(signupUser, {data, loading, error}) => {
             return (
-              <form>
+              <form 
+                className="form" 
+                onSubmit={event => this.handleSubmit(event, signupUser)}
+              >
                 <input 
                   type="text"
                   name="username"
