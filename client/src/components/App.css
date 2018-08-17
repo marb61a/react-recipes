@@ -113,3 +113,49 @@ textarea {
   margin: 0;
   padding: 0.2em;
 }
+
+
+/* Recipe Page */
+.recipe-image {
+  height: 60vh;
+  width: 100%;
+}
+
+.recipe-image:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 60vh;
+  opacity: 0.25;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.recipe {
+  text-align: center;
+  background: whitesmoke;
+  padding: 1em;
+}
+
+.recipe h1 {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.recipe-header {
+  overflow: hidden;
+  background-image: url(https://bit.ly/2JqRbuI);
+}
+
+.recipe-header > p {
+  margin: 0;
+}
+
+.recipe-description {
+  font-size: 2rem;
+  color: darkslategray;
+  padding: 1em;
+  font-weight: 200;
+  background: white;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+  font-style: italic;
+}
