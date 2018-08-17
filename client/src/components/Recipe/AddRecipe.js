@@ -72,7 +72,7 @@ class AddRecipe extends Component{
         {(addRecipe, { data, loading, error }) => 
           <div className="App">
             <h2 className="App">Add Recipe</h2>
-            <form className="form"
+            <form
               className="form"
               onSubmit={event => this.handleSubmit(event, addRecipe)}
             >
