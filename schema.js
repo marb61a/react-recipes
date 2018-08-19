@@ -24,7 +24,7 @@ exports.typeDefs = `
 
     getRecipe(_id: ID!): Recipe
 
-    searchRecipes(searchTerm: String) [Recipe]
+    searchRecipes(searchTerm: String): [Recipe]
 
     getCurrentUser: User
   }
