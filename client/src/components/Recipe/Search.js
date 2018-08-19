@@ -9,8 +9,10 @@ class Search extends Component{
     searchResults: []
   };
 
-  handleChange = () => {
-
+  handleChange = ({ searchRecipes }) => {
+    this.setState({
+      searchResults: searchRecipes
+    });
   }
   
   render(){
@@ -18,7 +20,30 @@ class Search extends Component{
 
     return (
       <ApolloConsumer>
-      
+        {client => (
+          <div className="App">
+            <h2 className="main-title">Search for Recipes</h2>
+            <input 
+              type="search"
+              className="search"
+              placeholder="Search"
+              onChange={async event => {
+                event.persist();
+                const { data } = await client.query({
+                  query: SEARCH_RECIPES,
+                  variables: { searchTerm: event.target.value }
+                });
+
+                this.handleChange(data);
+              }}
+            />
+            <ul>
+              {searchResults.map(recipe => (
+                <SearchItem key={recipe._id} {...recipe} />
+              ))}
+            </ul>
+          </div>
+        )}
       </ApolloConsumer>
     )
   }
