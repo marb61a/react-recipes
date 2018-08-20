@@ -73,7 +73,16 @@ const UserRecipes = ({ username }) => (
                       })
                     }}
                   >
-                  
+                    {
+                      (deleteUserRecipe, attrs = {}) => (
+                        <p
+                          className="delete-button"
+                          onClick={() => handleDelete(deleteUserRecipe)}
+                        >
+                          {attrs.loading ? "deleting..." : "X"}
+                        </p>
+                      )
+                    }
                   </Mutation>
                 </li>
               ))

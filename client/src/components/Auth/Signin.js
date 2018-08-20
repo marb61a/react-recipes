@@ -18,11 +18,11 @@ class Signin extends Component {
   clearState = () => {
     this.setState({
       ...initialState
-    })
+    });
   }
 
   handleChange = event => {
-    const {name, value } = event.target;
+    const { name, value } = event.target;
 
     this.setState({
       [name]: value

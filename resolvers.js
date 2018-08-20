@@ -67,6 +67,7 @@ exports.resolvers = {
       return user;
     }
   },
+  
   Mutation: {
     addRecipe: async (
       root, 

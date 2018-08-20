@@ -4,6 +4,7 @@ import { Mutation } from "react-apollo";
 
 import { ADD_RECIPE, GET_ALL_RECIPES, GET_USER_RECIPES } from "../../queries";
 import Error from "../Error";
+import withAuth from "../withAuth";
 
 const initialState = {
   name: "",
