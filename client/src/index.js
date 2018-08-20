@@ -15,6 +15,7 @@ import Signin from './components/Auth/Signin';
 import Signup from './components/Auth/Signup';
 import Search from './components/Recipe/Search';
 import AddRecipe from './components/Recipe/AddRecipe';
+import RecipePage from "./components/Recipe/RecipePage";
 import Profile from './components/Profile/Profile';
 
 const client = new ApolloClient({
@@ -29,16 +30,16 @@ const client = new ApolloClient({
       headers: {
         authorization: token
       }
-    })
+    });
   },
-  onError: ({networkError}) => {
+  onError: ({ networkError }) => {
     if (networkError) {
-      console.log('Network Error', networkError);
+      localStorage.setItem('token');
     }
   }
 });
 
-const Root = (refetch, session) => (
+const Root = ({ refetch, session }) => (
   <Router>
     <Fragment>
       <Navbar session={session}/>
@@ -51,6 +52,7 @@ const Root = (refetch, session) => (
           path="/recipe/add"
           render={() => <AddRecipe session={session} />}
         />
+        <Route path="/recipes/:_id" component={RecipePage} />
         <Route 
           path="/profile"
           render={() => <Profile session={session} />}

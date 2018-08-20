@@ -85,6 +85,19 @@ exports.resolvers = {
       return newRecipe;
     },
 
+    likeRecipe: async(root, { _id, username}, { User, Recipe }) => {
+      const recipe = Recipe.findOneAndUpdate(
+        { _id },
+        { $inc: { likes: 1} }
+      );
+      const user = User.findOneAndUpdate(
+        { username },
+        { $addToSet: { favorites: _id } }
+      );
+
+      return recipe;
+    },
+
     signinUser: async (root, { username, password }, {User}) => {
       const user = await User.findOne({username});
       if(!user){
