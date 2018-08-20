@@ -2,7 +2,9 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { Query } from "react-apollo";
 
-import { GET_RECIPE } from "../../queries"
+import { GET_RECIPE } from "../../queries";
+import LikeRecipe from "./LikeRecipe";
+import Spinner from "../Spinner";
 
 const RecipePage = ({match}) => {
   const { _id } = match.params;
@@ -10,29 +12,24 @@ const RecipePage = ({match}) => {
   return (
     <Query query={GET_RECIPE} variables={{ _id }}>
       {({ data, loading, error }) => {
-        if (loading) return <div>Loading</div>;
+        if (loading) return <Spinner />;
         if (error) return <div>Error</div>;
 
         return(
-          <div className="App">
-            <h2>
-              {data.getRecipe.name}
-            </h2>
-            <p>
-              Category: {data.getRecipe.category}
-            </p>
-            <p>
-              Description: {data.getRecipe.description}
-            </p>
-            <p>
-              Instructions: {data.getRecipe.instructions}
-            </p>
-            <p>
-              Likes: {data.getRecipe.likes}
-            </p>
-            <p>
-              Created By: {data.getRecipe.username}
-            </p>
+          <div>
+            <div 
+              style={{
+                background: `url(${
+                  data.getRecipe.imageUrl
+                }) center center / cover no-repeat`
+              }}
+              className="recipe-image"
+            />
+            <div className="recipe-header">
+              <h2 className="recipe-name">
+                <strong>{data.getRecipe.name}</strong>
+              </h2>
+            </div>
           </div>
         )
       }}
