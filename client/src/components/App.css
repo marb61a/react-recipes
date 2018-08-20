@@ -114,6 +114,47 @@ textarea {
   padding: 0.2em;
 }
 
+.Lunch {
+  width: 20%;
+  margin: 20px;
+  z-index: 1;
+  padding: 7px;
+  border-radius: 5px;
+  color: white;
+  background: #24c6dc;
+  background: linear-gradient(to right, #514a9d, #24c6dc);
+}
+
+.Snack {
+  width: 20%;
+  margin: 20px;
+  z-index: 1;
+  padding: 7px;
+  border-radius: 5px;
+  color: white;
+  background: #50c9c3;
+  background: linear-gradient(to right, rgb(80, 146, 143), rgb(2, 105, 100));
+}
+
+.Breakfast {
+  width: 100%;
+  margin: 20px;
+  z-index: 1;
+  color: white;
+  padding: 7px;
+  background: #9d50bb;
+  border-radius: 50px 120px 120px;
+}
+
+.Dinner {
+  width: 20%;
+  margin: 20px;
+  z-index: 1;
+  padding: 7px;
+  color: white;
+  background: linear-gradient(to right, #b24592, #f15f79);
+  border-radius: 50px 120px 120px;
+}
 
 /* Recipe Page */
 .recipe-image {
