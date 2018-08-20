@@ -200,3 +200,53 @@ textarea {
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
   font-style: italic;
 }
+
+.recipe-name {
+  color: #1eaedb;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+}
+
+.recipe-instructions {
+  text-align: left;
+  padding: 0 2em;
+}
+
+.recipe-instructions * {
+  padding-bottom: 0.5em;
+}
+
+.recipe-instructions__title {
+  font-weight: 200;
+  letter-spacing: 2px;
+  color: #1eaedb;
+  text-decoration: underline;
+}
+
+.like-button {
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  font-size: 2rem;
+  background-color: #f15f79;
+  color: white !important;
+}
+
+
+/* Search */
+.search {
+  font-size: 3rem;
+  transition: width 0.2s ease-in;
+  margin-top: 0.3em;
+  margin-bottom: 1em;
+  width: 10em;
+}
+
+.search:focus {
+  width: 12em;
+}
+
+.spinner {
+  text-align: center;
+  padding: 5em;
+}
