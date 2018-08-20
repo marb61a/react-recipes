@@ -8,7 +8,7 @@ const handleSignout = (client, history) => {
   history.push('/');
 };
 
-const Signout = ({ history }) => {
+const Signout = ({ history }) => (
   <ApolloConsumer>
     {client => {
       return (
@@ -20,6 +20,6 @@ const Signout = ({ history }) => {
 
   </ApolloConsumer>
 
-};
+);
 
 export default withRouter(Signout);
