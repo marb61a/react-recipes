@@ -61,6 +61,14 @@ export const ADD_RECIPE = gql`
   }
 `;
 
+export const LIKE_RECIPE = gql`
+  mutation($_id: ID!, $username: String!){
+    likeRecipe(_id: $_id, username: $username){
+      ...likeRecipe
+    }
+  }
+`;
+
 /* User Queries */
 export const GET_CURRENT_USER = gql`
   query {
