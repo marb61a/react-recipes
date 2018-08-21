@@ -10,8 +10,8 @@ const withAuth = conditionFunc => Component => props => (
       if(loading) return null;
 
       return conditionFunc(data) 
-      ? <Component {...props} />
-      : <Redirect to="/" />
+      ? ( <Component {...props} /> )
+      : ( <Redirect to="/" /> )
      }}
   </Query>
 );

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import posed from "react-pose";
 import { Query } from 'react-apollo';
@@ -17,7 +17,7 @@ const RecipeList = posed.ul({
   }
 });
 
-class App extends Component {
+class App extends React.Component {
   state ={
     on: false
   };
