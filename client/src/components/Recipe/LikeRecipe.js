@@ -39,8 +39,43 @@ class LikeRecipe extends Component {
           await this.props.refetch();
         });
     } else {
-
+      unlikeRecipe()
+        .then(async ({ data }) => {
+          await this.props.refetch();
+        });
     }
+  };
+
+  updateLike = (cache, { data: { likeRecipe }}) => {
+    const { _id } = this.props;
+    const { getRecipe } = cache.readQuery({
+      query: GET_RECIPE,
+      variables: { _id }
+    });
+
+    cache.writeQuery({
+      query: GET_RECIPE,
+      variables: { _id },
+      data: {
+        getRecipe: { ...getRecipe, likes: likeRecipe.likes + 1 }
+      }
+    });
+  };
+
+  updateUnlike = (cache, { data: { unlikeRecipe } }) => {
+    const { _id } = this.props;
+    const { getRecipe } = cache.readQuery({
+      query: GET_RECIPE,
+      variables: { _id }
+    });
+
+    cache.writeQuery({
+      query: GET_RECIPE,
+      variables: { _id },
+      data: {
+        getRecipe: { ...getRecipe, likes: unlikeRecipe.likes - 1 }
+      }
+    });
   };
 
   render(){
