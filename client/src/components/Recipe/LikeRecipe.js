@@ -83,8 +83,29 @@ class LikeRecipe extends Component {
     const { _id } = this.props;
 
     return (
-      <Mutation>
-      
+      <Mutation
+        mutation={UNLIKE_RECIPE}
+        variables={{_id, username}}
+        update={this.updateUnlike}
+      >
+        {unlikeRecipe => (
+          <Mutation
+            mutation={LIKE_RECIPE}
+            variables={{ _id, username }}
+            update={this.updateLike}
+          >
+            {
+              likeRecipe => username && (
+                <button
+                  className="like-button"
+                  onClick={() => this.handleClick(likeRecipe, unlikeRecipe)}
+                >
+                  {liked ? "Unlike" : "Like"}
+                </button>
+              )
+            }
+          </Mutation>
+        )}
       </Mutation>
     );
   }
