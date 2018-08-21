@@ -111,6 +111,11 @@ exports.resolvers = {
       return recipe;
     },
 
+    deleteUserRecipe: async (root, { _id }, { Recipe }) => {
+      const recipe = await Recipe.findOneAndRemove({ _id });
+      return recipe;
+    },
+
     signinUser: async (root, { username, password }, {User}) => {
       const user = await User.findOne({username});
       if(!user){
@@ -120,7 +125,7 @@ exports.resolvers = {
       const isValidPassword = await bcrypt.compare(password, user.password);
 
       if (!isValidPassword) {
-        throw new Error('Invalid password')
+        throw new Error('Invalid password');
       }
 
       return {

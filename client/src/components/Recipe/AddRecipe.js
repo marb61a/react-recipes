@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import CKEditor from "react-ckeditor-component";
 import { Mutation } from "react-apollo";
 
 import { ADD_RECIPE, GET_ALL_RECIPES, GET_USER_RECIPES } from "../../queries";
@@ -25,6 +26,13 @@ class AddRecipe extends Component{
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+  };
+
+  handleEditorChange = event => {
+    const newContent = event.editor.getData();
+    this.setState({
+      instructions: newContent
+    });
   };
 
   validateForm = () => {
