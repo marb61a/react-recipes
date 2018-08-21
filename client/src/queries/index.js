@@ -93,11 +93,11 @@ export const DELETE_USER_RECIPE = gql`
 export const GET_CURRENT_USER = gql`
   query {
     getCurrentUser {
-      username,
-      joinDate,
-      email,
+      username
+      joinDate
+      email
       favorites {
-        _id,
+        _id
         name  
       }
     }
