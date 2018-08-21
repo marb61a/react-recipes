@@ -19,15 +19,11 @@ export const GET_ALL_RECIPES = gql`
 export const GET_RECIPE = gql `
   query($_id: ID!){
     getRecipe(_id: $_id){
-      _id
-      name
-      description
-      instructions
-      category
-      likes
-      createdDate
+      ...CompleteRecipe
     }
   }
+
+  ${recipeFragments.recipe}
 `;
 
 export const SEARCH_RECIPES = gql `
@@ -61,14 +57,28 @@ export const ADD_RECIPE = gql`
       ...CompleteRecipe
     }
   }
+
+  ${recipeFragments.recipe}
 `;
 
 export const LIKE_RECIPE = gql`
   mutation($_id: ID!, $username: String!){
     likeRecipe(_id: $_id, username: $username){
-      ...likeRecipe
+      ...LikeRecipe
     }
   }
+
+  ${recipeFragments.like}
+`;
+
+export const UNLIKE_RECIPE = gql`
+  mutation($_id: ID!, $username: String!){
+    likeRecipe(_id: $_id, username: $username){
+      ...LikeRecipe
+    }
+  }
+
+  ${recipeFragments.like}
 `;
 
 export const DELETE_USER_RECIPE = gql`

@@ -98,6 +98,19 @@ exports.resolvers = {
       return recipe;
     },
 
+    unlikeRecipe: async() => {
+      const recipe = Recipe.findOneAndUpdate(
+        { _id },
+        { $inc: { likes: -1} }
+      );
+      const user = User.findOneAndUpdate(
+        { username },
+        { $pull: { favorites: _id } }
+      );
+
+      return recipe;
+    },
+
     signinUser: async (root, { username, password }, {User}) => {
       const user = await User.findOne({username});
       if(!user){
