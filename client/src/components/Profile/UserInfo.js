@@ -8,7 +8,7 @@ const formatDate = date => {
   return `${newDate} at ${newTime}}`;
 }
 
-const UserInfo = ({session}) => {
+const UserInfo = ({session}) => (
   <div>
     <h3>User Info</h3>
     <p>Username: {session.getCurrentUser.username}</p>
@@ -34,6 +34,6 @@ const UserInfo = ({session}) => {
       }
     </ul>
   </div>
-};
+);
 
 export default UserInfo;
