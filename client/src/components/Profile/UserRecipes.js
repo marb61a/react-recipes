@@ -93,3 +93,5 @@ const UserRecipes = ({ username }) => (
     }
   </Query>
 );
+
+export default UserRecipes;
