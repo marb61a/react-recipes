@@ -25,33 +25,35 @@ const RecipePage = ({match}) => {
               }}
               className="recipe-image"
             />
-            <div className="recipe-header">
-              <h2 className="recipe-name">
-                <strong>{data.getRecipe.name}</strong>
-              </h2>
-              <h5>
-                <strong>{data.getRecipe.category}</strong>
-              </h5>
-              <p>
-                Created by <strong>{data.getRecipe.username}</strong>
-              </p>
-              <p>
-                {data.getRecipe.likes}{" "}
-                <span role="img" aria-label="heart">
-                  ❤️
-                </span>
-              </p>
-              <blockquote className="recipe-description">
-                {data.getRecipe.description}
-              </blockquote>
-              <h3 className="recipe-instructions__title">Instructions</h3>
-              <div 
-                className="recipe-instructions"
-                dangerouslySetInnerHTML={{
-                  __html: data.getRecipe.instructions
-                }}
-              />
-              <LikeRecipe _id={_id}/>
+            <div className="recipe">
+              <div className="recipe-header">
+                <h2 className="recipe-name">
+                  <strong>{data.getRecipe.name}</strong>
+                </h2>
+                <h5>
+                  <strong>{data.getRecipe.category}</strong>
+                </h5>
+                <p>
+                  Created by <strong>{data.getRecipe.username}</strong>
+                </p>
+                <p>
+                  {data.getRecipe.likes}{" "}
+                  <span role="img" aria-label="heart">
+                    ❤️
+                  </span>
+                </p>
+                <blockquote className="recipe-description">
+                  {data.getRecipe.description}
+                </blockquote>
+                <h3 className="recipe-instructions__title">Instructions</h3>
+                <div 
+                  className="recipe-instructions"
+                  dangerouslySetInnerHTML={{
+                    __html: data.getRecipe.instructions
+                  }}
+                />
+                <LikeRecipe _id={_id}/>
+              </div>
             </div>
           </div>
         )

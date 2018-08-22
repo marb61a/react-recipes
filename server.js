@@ -7,12 +7,12 @@ require('dotenv').config({
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 
+const Recipe = require('./models/Recipe');
+const User = require('./models/User');
+
 // Brings in the GraphQL - Express middleware
 const { graphiqlExpress, graphqlExpress} = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
-
-const Recipe = require('./models/Recipe');
-const User = require('./models/User');
 
 // GraphQL needs its own schemas
 const { typeDefs } = require('./schema');
@@ -69,6 +69,14 @@ app.use(
     }
   }))
 );
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+};
 
 const PORT = process.env.PORT || 4444;
 
