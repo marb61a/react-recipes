@@ -10,7 +10,7 @@ const createToken = (user, secret, expiresIn) => {
 exports.resolvers = {
   Query: {
     getAllRecipes: async(root, args, { Recipe }) => {
-      const allRecipes = await Recipe.find();
+      const allRecipes = await Recipe.find().sort({ createdDate: "desc" });
 
       return allRecipes;
     },
@@ -30,7 +30,7 @@ exports.resolvers = {
             score: { $meta: "textScore" }  
           }
         ).sort({
-           $meta: "textScore" 
+          score: { $meta: "textScore" }
         });
 
         return searchResults;
@@ -71,7 +71,7 @@ exports.resolvers = {
   Mutation: {
     addRecipe: async (
       root, 
-      { name, description, category, instructions, username }, 
+      { name, imageUrl, description, category, instructions, username }, 
       { Recipe }
     ) => {
       const newRecipe = await new Recipe({
@@ -85,8 +85,8 @@ exports.resolvers = {
       return newRecipe;
     },
 
-    likeRecipe: async(root, { _id, username}, { User, Recipe }) => {
-      const recipe = Recipe.findOneAndUpdate(
+    likeRecipe: async(root, { _id, username}, { Recipe, User }) => {
+      const recipe = await Recipe.findOneAndUpdate(
         { _id },
         { $inc: { likes: 1} }
       );
@@ -98,7 +98,7 @@ exports.resolvers = {
       return recipe;
     },
 
-    unlikeRecipe: async() => {
+    unlikeRecipe: async(root, { _id, username }, { Recipe, User }) => {
       const recipe = Recipe.findOneAndUpdate(
         { _id },
         { $inc: { likes: -1} }

@@ -3,7 +3,7 @@ import './App.css';
 import posed from "react-pose";
 import { Query } from 'react-apollo';
 
-import { GET_ALL_RECIPES } from '../queries/index';
+import { GET_ALL_RECIPES } from '../queries';
 import RecipeItem from "./Recipe/RecipeItem";
 import Spinner from "./Spinner";
 
@@ -18,7 +18,7 @@ const RecipeList = posed.ul({
 });
 
 class App extends React.Component {
-  state ={
+  state = {
     on: false
   };
 
@@ -51,11 +51,11 @@ class App extends React.Component {
                   <RecipeItem key={recipe._id} {...recipe} />
                 ))}
               </RecipeList>
-            )
+            );
           }}
         </Query>
       </div>
-    )
+    );
   }
 }
 

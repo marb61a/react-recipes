@@ -100,7 +100,7 @@ class AddRecipe extends Component{
         {(addRecipe, { data, loading, error }) => {
           return(
             <div className="App">
-              <h2 className="App">Add Recipe</h2>
+              <h2 className="main-title">Add Recipe</h2>
               <form
                 className="form"
                 onSubmit={event => this.handleSubmit(event, addRecipe)}
@@ -111,6 +111,7 @@ class AddRecipe extends Component{
                     name="name"
                     placeholder="Add Name"
                     onChange={this.handleChange}
+                    value={name}
                   />
                 <label htmlFor="imageUrl">Recipe Image</label>
                   <input
@@ -137,6 +138,7 @@ class AddRecipe extends Component{
                     name="description"
                     placeholder="Add Description"
                     onChange={this.handleChange}
+                    value={description}
                   />
                 <label htmlFor="instructions">Recipe Instructions</label>
                   <CKEditor 
@@ -154,10 +156,10 @@ class AddRecipe extends Component{
                 {error && <Error error={error} />}
               </form>
             </div>
-          )
+          );
         }}
       </Mutation>
-    )
+    );
   }
 };
 
