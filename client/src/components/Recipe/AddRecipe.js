@@ -51,12 +51,10 @@ class AddRecipe extends Component{
   };
 
   validateForm = () => {
-    const { 
-      name, imageUrl, category, description, instructions 
-    } = this.state;
+    const { name, imageUrl, category, description, instructions } = this.state;
     const isInvalid =
       !name || !imageUrl || !category || !description || !instructions;
-    
+      
     return isInvalid;
   };
 

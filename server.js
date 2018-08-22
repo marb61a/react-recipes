@@ -42,7 +42,7 @@ app.use(async (req, res, next) => {
   if(token !== null){
     try {
       const currentUser = await jwt.verify(token, process.env.SECRET);
-
+      req.currentUser = currentUser;	
     } catch(err){
       console.error(err);
     }
@@ -52,18 +52,23 @@ app.use(async (req, res, next) => {
 });
 
 // Create graphiql application
-app.use('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql'
-}));
+// app.use('/graphiql', graphiqlExpress({
+//   endpointURL: '/graphql'
+// }));
 
 // Connect mongoose schemas to graphql
-app.use('/graphql', bodyParser.json(), graphqlExpress({
-  schema,
-  context: {
-    Recipe,
-    User
-  }
-}));
+app.use(
+  "/graphql",
+  bodyParser.json(),
+  graphqlExpress(({ currentUser }) => ({
+    schema,
+    context: {
+      Recipe,
+      User,
+      currentUser
+    }
+  }))
+);
 
 const PORT = process.env.PORT || 4444;
 
