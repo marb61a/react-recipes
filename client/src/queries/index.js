@@ -6,17 +6,15 @@ import { recipeFragments } from "./fragments";
 export const GET_ALL_RECIPES = gql`
   query {
     getAllRecipes {
+      _id
+      imageUrl
       name
-      description
-      instructions
       category
-      likes
-      createdDate
     }
   }
 `;
 
-export const GET_RECIPE = gql `
+export const GET_RECIPE = gql`
   query($_id: ID!){
     getRecipe(_id: $_id){
       ...CompleteRecipe
@@ -26,7 +24,7 @@ export const GET_RECIPE = gql `
   ${recipeFragments.recipe}
 `;
 
-export const SEARCH_RECIPES = gql `
+export const SEARCH_RECIPES = gql`
   query($searchTerm: String){
     searchRecipes(searchTerm: $searchTerm){
       _id
